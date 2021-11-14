@@ -1,6 +1,7 @@
 .verticalMenu{
         min-height: 100vh;
         background-color: #fff;
+        max-width: 222px;
 }
 
 .optionsConta{

@@ -40,7 +40,7 @@ export default function Main () {
                     <Navbar/>
                 </div>
                     {/* Other components */}
-                <div>
+                <div className="mx-2">
                     <Route component={Dashboard} path="/" />
                     <Route component={Article} path="/articulos" />
                     <Route component={Providers} path="/proveedores"/>

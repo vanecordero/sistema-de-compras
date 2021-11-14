@@ -13,6 +13,9 @@
     align-content: center;
     justify-content: center;
 }
+.card:hover{
+    cursor: pointer;
+}
 
 .card_text{
     font-size: 0.8rem;
