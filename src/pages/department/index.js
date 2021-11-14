@@ -1,5 +1,5 @@
 import AllDepartament from "hooks/departaments/allDepartments";
-import { DeleteDepartaments, GetDepartaments } from "sevices/departments";
+import { DeleteDepartaments, GetDepartaments, AddDepartaments} from "sevices/departments";
 import Bradcrumb from "components/Breadcrumb";
 import FindImg from "components/getImages/findImg";
 import '../../App.css';
@@ -17,6 +17,10 @@ export default function Deparment() {
        
 
 	let button = useRef(null);
+	let name = useRef(null);
+	let estado = useRef(null);
+	let cerrar = useRef(null);
+	
 	const deleteElement=(e, id)=>{
         Swal.fire({
             title: '¿Esta seguro que desea eliminarlo?',
@@ -47,6 +51,22 @@ export default function Deparment() {
 		console.log(id)
 		button.current.click()
 	}
+	const addDep=(e)=>{
+		e.preventDefault()
+		let bool = false
+		if(estado.current.isCheked){
+			bool=true
+		}
+		if(name !==""){
+			let json ={"nombre":name.current.value, "estado":bool}
+			AddDepartaments(json).then(res =>{
+				GetDepartaments().then(res =>{
+					setPROVIDER(res)
+				})
+				cerrar.current.click()
+			})
+		}
+	}
 	return ( 
 		<>
 <button hidden type="button" data-bs-toggle="modal" data-bs-target="#modalArti" ref={button}>
@@ -70,10 +90,42 @@ export default function Deparment() {
   </div>
 </div>
 
+{/* Add dep */}
+<div className="modal fade" id="modalArtiAdd" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+     <form onSubmit={addDep}>
+		 <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Agregar departamento</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+	  
+  <div className="mb-3">
+    <label htmlFor="exampleInputEmail1" className="form-label">Nombre</label>
+    <input type="text" className="form-control" ref={name}/>
+  </div>
+  <div className="form-check form-switch">
+	  
+		<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Estado</label>
+		<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" ref={estado}/>
+	</div>
+
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={cerrar} >Cerrar</button>
+        <button type="submit" className="btn btn-primary">Agregar departamento</button>
+      </div>
+	 
+	  </form>
+    </div>
+  </div>
+</div>
+
 		<Bradcrumb 
         text="Departamento"/>
 
-<button type="button" className="btn btn-primary">Agregar nuevo departamento</button>
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalArtiAdd" >Agregar nuevo departamento</button>
 	
     <div>
 			<table className="table table-hover bg-white shadow-sm mt-3">
