@@ -4,20 +4,19 @@ import AllListas from "hooks/lista/allListas";
 export default function Table(){
     
    const ALLISTAS = AllListas()
-   console.log(ALLISTAS)
     return(
         <>
         <div className="mt-3">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">
     
-<a className="navbar-brand" href="#">Listado de ordenes</a>
+<span>Solicitudes de compras</span>
     
     
       <form className="d-flex ">
       <div className="">        
-        <select className="form-select" aria-label="form-select">
-        <option selected>Todos</option>
+        <select className="form-select" aria-label="form-select" defaultValue="Todos">
+        <option value="Todos">Todos</option>
         <option value="id">ID</option>
         <option value="2"># de orden</option>
         <option value="3">Fecha</option>
@@ -26,7 +25,7 @@ export default function Table(){
     </div>
     <div className="col-auto d-flex ms-2"> 
         <input className="form-control" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <button className="btn btn-outline-primary" type="submit">Search</button>
         </div>
       </form>
   </div>
@@ -45,8 +44,7 @@ export default function Table(){
         <tbody>
         {
             Object.keys(ALLISTAS).map(ele=>{
-                console.log(ALLISTAS[ele])
-            return <tr key={"comp_"+ALLISTAS[ele].id}>
+             return <tr key={"comp_"+ALLISTAS[ele].id}>
                 <th scope="row">{ALLISTAS[ele]["id"]}</th>
                 <td>{ALLISTAS[ele]["numeroOrden"]}</td>
                 <td>{ALLISTAS[ele]["fecha"]}</td>

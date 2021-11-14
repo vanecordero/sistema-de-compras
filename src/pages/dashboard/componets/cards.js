@@ -3,14 +3,13 @@ import e from "../style.module.css"
 import { useLocation } from "wouter";
 
 export default function Card({action, url, desc, className, pathUrl}) {
-    console.log(pathUrl)
     const [, goPath]= useLocation()
     const handleClick =()=>{
         goPath(pathUrl)
     }
     return ( 
         <>
-        <div className="col-3 p-2">
+        <div className="col-2 p-2">
             <div className={`shadow-sm ${e.card}`}
             onClick={handleClick}>
                 <div className="card-body">

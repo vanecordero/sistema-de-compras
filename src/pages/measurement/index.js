@@ -1,22 +1,23 @@
-import AllArticle from "hooks/articulos/allArticles";
+import AllMedidas from "hooks/medidas/allMedidas";
 import Bradcrumb from "components/Breadcrumb";
 import FindImg from "components/getImages/findImg";
 import '../../App.css';
 import { useRef , useState, useEffect} from "react";
 import Swal from 'sweetalert2';
-import { GetArticulo, DeleteArticulo } from "sevices/articulos/articulo";
+import { GetMedidas, DeleteMedidas } from "sevices/medidas";
 
-export default function Article() {
-	const art = AllArticle()
-    const [ARTICULO, setARTICULO]= useState("")
+function Medidas() {
+	const med = AllMedidas()
+    const [MEDIDAS, setMEDIDAS]= useState("")
 
     useEffect(() => {
-        setARTICULO(art)
-    }, [art])
+        setMEDIDAS(med)
+    }, [med])
 
-	console.log(ARTICULO)
+
 	let button = useRef(null);
 	const deleteElement=(e, id)=>{
+		console.log(id)
 		Swal.fire({
             title: '¿Esta seguro que desea eliminarlo?',
             text: "Esta accion no podra ser revertida!",
@@ -28,10 +29,10 @@ export default function Article() {
             confirmButtonText: 'Si, eliminarlo!'
           }).then((result) => {
             if (result.isConfirmed) {
-                DeleteArticulo(id).then(a=>{
-                    GetArticulo().then(res =>{
+                DeleteMedidas(id).then(a=>{
+                    GetMedidas().then(res =>{
 						console.log(res)
-                        setARTICULO(res)
+                        setMEDIDAS(res)
                     })
                     Swal.fire({
                         title:  'Eliminado!',
@@ -44,14 +45,16 @@ export default function Article() {
           })
 	}
 	const openModal=(id)=>{
+		console.log(id)
 		button.current.click()
 	}
 	return ( 
 		<>
-<button hidden type="button" data-bs-toggle="modal" data-bs-target="#modalArti" ref={button}>
+<button hidden type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMedida" ref={button}>
+  Launch demo modal
 </button>
 
-<div className="modal fade" id="modalArti" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id="modalMedida" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
@@ -70,19 +73,16 @@ export default function Article() {
 </div>
 
 		<Bradcrumb 
-        text="Articulo"/>
+        text="Medidas"/>
 
-<button type="button" className="btn btn-primary">Agregar nuevo articulo</button>
+<button type="button" className="btn btn-primary">Agregar nueva medida</button>
 	
     <div>
 			<table className="table table-hover bg-white shadow-sm mt-3">
 			<thead>
 					<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Tipo</th>
-					<th scope="col">Marca</th>
-					<th scope="col">Medida</th>
-					<th scope="col">Disponible</th>
+					<th scope="col" >Tipo</th>
 					<th scope="col">Estado</th>
 					<th scope="col">Editar</th>
 					<th scope="col">Eliminar</th>
@@ -90,24 +90,21 @@ export default function Article() {
 			</thead>
 			<tbody>
 			{
-					Object.keys(ARTICULO).map(ele=>{
-					return <tr key={"art_"+ARTICULO[ele].id}>
-							<th scope="row">{ARTICULO[ele]["id"]}</th>
-                            <td>{ARTICULO[ele]["description"]}</td>
-							<td>{ARTICULO[ele]["brand"]}</td>
-                            <td>{ARTICULO[ele]["unidadesMedidas"][0]["descripcion"]}</td>
-                            <td>{ARTICULO[ele]["disponibilidadArticulo"]}</td>
-							<td className={`${(ARTICULO[ele]["estado"])? "activo" : "inactivo"}`}>{
-								(ARTICULO[ele]["estado"])? "Activo": "Inactivo"
+					Object.keys(MEDIDAS).map(ele=>{
+					return <tr key={"comp_"+MEDIDAS[ele].id}>
+							<th scope="row">{MEDIDAS[ele]["id"]}</th>
+							<td>{MEDIDAS[ele]["descripcion"]}</td>
+							<td className={`${(MEDIDAS[ele]["estado"])? "activo" : "inactivo"}`}>{
+								(MEDIDAS[ele]["estado"])? "Activo": "Inactivo"
 							}</td>
 							<td>
-							<span onClick={(e => openModal(ARTICULO[ele]["id"]))}>
+							<span onClick={(e => openModal(MEDIDAS[ele]["id"]))}>
 								<FindImg src="edit.png"
 								alt="Edit button" className="iconBtn"/>
 							</span>								
 							</td>
 							<td>
-								<span onClick={(e => deleteElement(e, ARTICULO[ele]["id"]))}>									
+								<span onClick={(e => deleteElement(e, MEDIDAS[ele]["id"]))}>									
 							<FindImg src="remove.png"
 								alt="Edit button" className="iconBtn"/>
 								</span>
@@ -121,3 +118,5 @@ export default function Article() {
 		</>
 	);
 }
+
+export default Medidas;

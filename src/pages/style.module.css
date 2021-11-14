@@ -6,6 +6,7 @@
 
 .optionsConta{
  background-color: #f2f7fa;
+ min-height: 100vh;
 }
 
 .navContainer{

@@ -7,6 +7,21 @@
   pointer-events: none;
 }
 
+.activo{
+  color: rgb(121, 202, 40);
+}
+
+.inactivo{
+  color: rgb(157, 158, 156);
+}
+
+.iconBtn{
+  width: 25px;
+}
+.iconBtn:hover{
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

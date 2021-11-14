@@ -1,13 +1,13 @@
 import Card from "./componets/cards";
 import { systemOptions } from "utils/systemOptions";
 import e from './style.module.css';
-import Table from "./componets/table";
+import Table from "../purchase/components/table";
 
 export default function Dashboard () {
 
     return ( 
-    <div className={`container p-0 ${e.dashCtn}`}>
-    <div className="row p-1 mt-3">
+    <div className={`container p-0`}>
+    <div className="row p-1 mt-3 d-flex justify-content-between">
         {
             Object.keys(systemOptions).map(val =>{
             if(val === "Dashboard"){

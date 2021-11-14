@@ -32,5 +32,11 @@ export const systemOptions ={
         description: "Proveedores",
         url: "/proveedores",
         action: "Edita/agrega proveedores"
+    },
+    Medidas:{
+        img: "measure.png",
+        description: "Unidad de medidas",
+        url: "/medidas",
+        action: "Edita/agrega unidad de medidas"
     }
 }

@@ -1,7 +1,13 @@
+import Table from "pages/purchase/components/table";
+import Bradcrumb from "components/Breadcrumb";
 export default function Purchases(){
+
     return(
         <>
-        <p>Purchase works</p>
+        <Bradcrumb 
+        text="Solicitudes de compras"
+        />
+        <Table/>
         </>
     )
 }

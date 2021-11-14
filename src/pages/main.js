@@ -8,6 +8,7 @@ import Deparment from "./department";
 import Purchases from "./purchase";
 import NewPurchase from "./purchase/newPurchase";
 import Providers from "./provider";
+import Medidas from "./measurement";
 import { useState } from "react";
 
 export default function Main () {
@@ -40,13 +41,14 @@ export default function Main () {
                     <Navbar/>
                 </div>
                     {/* Other components */}
-                <div className="mx-2">
+                <div className="m-3">
                     <Route component={Dashboard} path="/" />
                     <Route component={Article} path="/articulos" />
                     <Route component={Providers} path="/proveedores"/>
                     <Route component={Deparment} path="/departamentos"/>
                     <Route component={Purchases} path="/compras" />
                     <Route component={NewPurchase} path="/nueva%20compra"/>
+                    <Route component={Medidas} path="/medidas"/>
                 </div>                
                </section>
         </main>
