@@ -1,24 +1,20 @@
 
 import axios from 'axios';
-
+const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com/"
 export function GetArticulo(){
-    const apiURL = "https://salessystemv1.herokuapp.com/api/v1/articles"
-    return axios.get(apiURL + "/all").then(res =>{
+    
+    return axios.get(apiURL + "api/v1/all/articles").then(res =>{
       return  res.data
     })
 }
 
-export function EditArticulo(){
-    const apiURL = "https://salessystemv1.herokuapp.com/api/v1/articles"
-
-    return axios.get(apiURL + "/all").then(res =>res.data)
+export function EditArticulo(id){
+    return axios.get(apiURL + "api/v1/units/"+id+"/update/article/"+id).then(res =>res.data)
 
 }
 
 export function DeleteArticulo(id){
-  console.log(id)
-  const apiURL = "https://salessystemv1.herokuapp.com/api/v1/articles"
 
-  return axios.delete(apiURL + "/delete/"+id).then(res =>res.data)
+  return axios.delete(apiURL + "api/v1/units/"+id+"/delete/article/"+id).then(res =>res.data)
 
 }

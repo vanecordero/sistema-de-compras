@@ -55,7 +55,7 @@ export default function Providers() {
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Editar proveedor</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
@@ -79,7 +79,7 @@ export default function Providers() {
 			<thead>
 					<tr>
 					<th scope="col">ID</th>
-					<th scope="col">RCN/IDN</th>
+					<th scope="col">Cedula/RNC</th>
 					<th scope="col">Nombre</th>
 					<th scope="col">Estado</th>
 					<th scope="col">Editar</th>
@@ -92,9 +92,9 @@ export default function Providers() {
 					return <tr key={"prov_"+PROVIDER[ele].id}>
 							<th scope="row">{PROVIDER[ele]["id"]}</th>
                             <td>{PROVIDER[ele]["cedula"]}</td>
-							<td>{PROVIDER[ele]["nombreComercial"]}</td>                            
-							<td className={`${(PROVIDER[ele]["estado"])? "activo" : "inactivo"}`}>{
-								(PROVIDER[ele]["estado"])? "Activo": "Inactivo"
+							<td>{PROVIDER[ele]["tradeName"]}</td>                            
+							<td className={`${(PROVIDER[ele]["status"])? "activo" : "inactivo"}`}>{
+								(PROVIDER[ele]["status"])? "Activo": "Inactivo"
 							}</td>
 							<td>
 							<span onClick={(e => openModal(PROVIDER[ele]["id"]))}>

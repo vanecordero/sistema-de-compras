@@ -19,24 +19,24 @@ export const systemOptions ={
         img: "article.png",
         description: "Articulos",
         url : "/articulos",
-        action: "Edita/agrega articulos"
+        action: "Editar/agregar articulos"
     },
     Departamentos:{
         img: "departamento.png",
         description: "Departamentos",
         url: "/departamentos",
-        action: "Edita/agrega departamentos"
+        action: "Editar/agregar departamentos"
     },
     Proveedores:{
         img: "Provedores.png",
         description: "Proveedores",
         url: "/proveedores",
-        action: "Edita/agrega proveedores"
+        action: "Editar/agregar proveedores"
     },
     Medidas:{
         img: "measure.png",
         description: "Unidad de medidas",
         url: "/medidas",
-        action: "Edita/agrega unidad de medidas"
+        action: "Editar/agregar unidad de medidas"
     }
 }

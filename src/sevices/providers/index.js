@@ -1,19 +1,19 @@
 
 import axios from 'axios';
-const apiURL = "https://salessystemv1.herokuapp.com/api/v1/proveedores"
+const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com/"
     
 export function GetProviders(){
-    return axios.get(apiURL + "/all").then(res =>{
+    return axios.get(apiURL + "api/v1/all/providers").then(res =>{
       return  res.data
     })
 }
 
 export function EditProviders(){
-   return axios.get(apiURL + "/all").then(res =>res.data)
+   return axios.get(apiURL + "api/v1/all/providers").then(res =>res.data)
 
 }
 
 export function DeleteProviders(id){
- return axios.delete(apiURL + "/delete/"+id).then(res =>res.data)
+ return axios.delete(apiURL + "api/v1/delete/provider/"+id).then(res =>res.data)
 
 }

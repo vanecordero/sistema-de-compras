@@ -93,9 +93,9 @@ function Medidas() {
 					Object.keys(MEDIDAS).map(ele=>{
 					return <tr key={"comp_"+MEDIDAS[ele].id}>
 							<th scope="row">{MEDIDAS[ele]["id"]}</th>
-							<td>{MEDIDAS[ele]["descripcion"]}</td>
-							<td className={`${(MEDIDAS[ele]["estado"])? "activo" : "inactivo"}`}>{
-								(MEDIDAS[ele]["estado"])? "Activo": "Inactivo"
+							<td>{MEDIDAS[ele]["description"]}</td>
+							<td className={`${(MEDIDAS[ele]["status"])? "activo" : "inactivo"}`}>{
+								(MEDIDAS[ele]["status"])? "Activo": "Inactivo"
 							}</td>
 							<td>
 							<span onClick={(e => openModal(MEDIDAS[ele]["id"]))}>

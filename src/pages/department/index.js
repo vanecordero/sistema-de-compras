@@ -143,9 +143,9 @@ export default function Deparment() {
 					Object.keys(PROVIDER).map(ele=>{
 					return <tr key={"prov_"+PROVIDER[ele].id}>
 							<th scope="row">{PROVIDER[ele]["id"]}</th>
-                            <td>{PROVIDER[ele]["nombre"]}</td>
-							<td className={`${(PROVIDER[ele]["estado"])? "activo" : "inactivo"}`}>{
-								(PROVIDER[ele]["estado"])? "Activo": "Inactivo"
+                            <td>{PROVIDER[ele]["name"]}</td>
+							<td className={`${(PROVIDER[ele]["status"])? "activo" : "inactivo"}`}>{
+								(PROVIDER[ele]["status"])? "activo": "inactivo"
 							}</td>
 							<td>
 							<span onClick={(e => openModal(PROVIDER[ele]["id"]))}>

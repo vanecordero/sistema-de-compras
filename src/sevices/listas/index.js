@@ -1,14 +1,13 @@
 
 import axios from 'axios';
-const apiURL = "https://salessystemv1.herokuapp.com/api/v1/compras"
+const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com/"
    
 export function GetListas(){
-     return axios.get(apiURL + "/all").then(res =>{
+     return axios.get(apiURL + "api/v1/all/orders").then(res =>{
       return  res.data
     })
 }
 
 export function EditListas(){
-   return axios.get(apiURL + "/all").then(res =>res.data)
-
+   return axios.get(apiURL + "all").then(res =>res.data)
 }

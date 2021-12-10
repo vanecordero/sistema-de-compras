@@ -1,9 +1,9 @@
 
 import axios from 'axios';
-const apiURL = "https://salessystemv1.herokuapp.com/api/v1/unidades"
+const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com"
     
 export function GetMedidas(){
-    return axios.get(apiURL + "/all").then(res =>{
+    return axios.get(apiURL + "/api/v1/all/measure").then(res =>{
       return  res.data
     })
 }

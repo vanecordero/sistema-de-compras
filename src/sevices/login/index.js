@@ -1,0 +1,1 @@
+export const ApiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com"
