@@ -56,12 +56,6 @@ export default function Table(){
    
       };
 
-
-    
-
-    
-    
-
    const ALLISTAS = AllListas()
     return(
         <>

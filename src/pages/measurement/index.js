@@ -4,7 +4,7 @@ import FindImg from "components/getImages/findImg";
 import '../../App.css';
 import { useRef , useState, useEffect} from "react";
 import Swal from 'sweetalert2';
-import { GetMedidas, DeleteMedidas } from "sevices/medidas";
+import { GetMedidas, DeleteMedidas, AddMedidas} from "sevices/medidas";
 
 function Medidas() {
 	const med = AllMedidas()
@@ -16,6 +16,9 @@ function Medidas() {
 
 
 	let button = useRef(null);
+	let description = useRef(null);
+	let status = useRef(null);
+	let cerrar = useRef(null);
 	const deleteElement=(e, id)=>{
 		console.log(id)
 		Swal.fire({
@@ -48,41 +51,87 @@ function Medidas() {
 		console.log(id)
 		button.current.click()
 	}
+	const AddMed=(e)=>{
+		e.preventDefault()
+		let bool = false
+		if(status.current.isCheked){
+			bool = true
+		}
+		if(description !== ""){
+			let json ={"description":description.current.value, "status":bool}
+			AddMedidas(json).then(res =>{
+				GetMedidas().then(res =>{
+					setMEDIDAS(res)
+				})
+				cerrar.current.click()
+			})
+		}
+	}
 	return ( 
 		<>
 <button hidden type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMedida" ref={button}>
-  Launch demo modal
 </button>
 
 <div className="modal fade" id="modalMedida" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Editar registro</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
         ...
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar accion</button>
+        <button type="button" className="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
 </div>
 
+{/* Add new measurent unit */}
+<div className="modal fade" id="modalArtiAdd" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+
+     <form onSubmit={AddMed}>
+		 <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Agregar unidad de medida</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+  <div className="mb-3">
+    <label htmlFor="exampleInputEmail1" className="form-label">Descripcion</label>
+    <input type="text" className="form-control" ref={description}/>
+  </div>
+  <div className="form-check form-switch">
+	  
+		<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Estado</label>
+		<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" ref={status}/>
+	</div>
+
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={cerrar} >Cerrar</button>
+        <button type="submit" className="btn btn-primary" onClick={(AddMed)} >Agregar unidad de medida</button>
+      </div>
+	 
+	  </form>
+    </div>
+  </div>
+</div>
 		<Bradcrumb 
         text="Medidas"/>
 
-<button type="button" className="btn btn-primary">Agregar nueva medida</button>
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalArtiAdd" >Agregar nueva medida</button>
 	
     <div>
 			<table className="table table-hover bg-white shadow-sm mt-3">
 			<thead>
 					<tr>
 					<th scope="col">ID</th>
-					<th scope="col" >Tipo</th>
+					<th scope="col">Tipo</th>
 					<th scope="col">Estado</th>
 					<th scope="col">Editar</th>
 					<th scope="col">Eliminar</th>

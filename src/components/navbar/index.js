@@ -13,13 +13,13 @@ export default function Navbar(){
                 className={e.logo}/> 
               <p className={`${e.logo_text} m-0`}>                
                 Sistema de compras</p>
-                <p className={`ms-2 m-0 ${e.logo_text_p}`}>Admin Deashboard</p>
+                <p className={`ms-2 m-0 ${e.logo_text_p}`}>Admin Dashboard</p>
             </div>
             <div className="col-2 d-flex justify-content-end">
               <div className={e.login}>
               <FindImg src={"user.png"} alt={"user logo icon login button"}
             className={e.login_icon}/>
-                <small  className={e.login_text}>Login</small>
+                <small  className={e.login_text}></small>
               </div>
             </div>
           </div>

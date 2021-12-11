@@ -18,7 +18,7 @@ export default function Deparment() {
 
 	let button = useRef(null);
 	let name = useRef(null);
-	let estado = useRef(null);
+	let status = useRef(null);
 	let cerrar = useRef(null);
 	
 	const deleteElement=(e, id)=>{
@@ -54,11 +54,11 @@ export default function Deparment() {
 	const addDep=(e)=>{
 		e.preventDefault()
 		let bool = false
-		if(estado.current.isCheked){
-			bool=true
+		if(status.current.isCheked){
+			bool = true
 		}
 		if(name !==""){
-			let json ={"nombre":name.current.value, "estado":bool}
+			let json ={"name":name.current.value, "status":bool}
 			AddDepartaments(json).then(res =>{
 				GetDepartaments().then(res =>{
 					setPROVIDER(res)
@@ -76,15 +76,15 @@ export default function Deparment() {
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Editar registro</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
         ...
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar accion</button>
+        <button type="button" className="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
@@ -96,11 +96,10 @@ export default function Deparment() {
     <div className="modal-content">
      <form onSubmit={addDep}>
 		 <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Agregar departamento</h5>
+        <h5 className="modal-title" id="exampleModalLabel">Agregar proveedor</h5>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-	  
   <div className="mb-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Nombre</label>
     <input type="text" className="form-control" ref={name}/>
@@ -108,13 +107,13 @@ export default function Deparment() {
   <div className="form-check form-switch">
 	  
 		<label className="form-check-label" htmlFor="flexSwitchCheckChecked">Estado</label>
-		<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" ref={estado}/>
+		<input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" ref={status}/>
 	</div>
 
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={cerrar} >Cerrar</button>
-        <button type="submit" className="btn btn-primary">Agregar departamento</button>
+        <button type="submit" className="btn btn-primary" onClick={(addDep)} >Agregar departamento</button>
       </div>
 	 
 	  </form>
@@ -145,7 +144,7 @@ export default function Deparment() {
 							<th scope="row">{PROVIDER[ele]["id"]}</th>
                             <td>{PROVIDER[ele]["name"]}</td>
 							<td className={`${(PROVIDER[ele]["status"])? "activo" : "inactivo"}`}>{
-								(PROVIDER[ele]["status"])? "activo": "inactivo"
+								(PROVIDER[ele]["status"])? "Activo": "Inactivo"
 							}</td>
 							<td>
 							<span onClick={(e => openModal(PROVIDER[ele]["id"]))}>

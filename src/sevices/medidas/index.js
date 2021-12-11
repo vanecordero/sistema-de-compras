@@ -1,9 +1,9 @@
 
 import axios from 'axios';
-const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com"
+const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com/api/v1/"
     
 export function GetMedidas(){
-    return axios.get(apiURL + "/api/v1/all/measure").then(res =>{
+    return axios.get(apiURL + "all/measure").then(res =>{
       return  res.data
     })
 }
@@ -14,6 +14,13 @@ export function EditMedidas(){
 }
 
 export function DeleteMedidas(id){
-  return axios.delete(apiURL + "/delete/"+id).then(res =>res.data)
+  return axios.delete(apiURL + "/delete/measure/"+id).then(res =>res.data)
 
 }
+export function AddMedidas(json){
+  console.log(json)
+  return axios({
+    method: 'POST',
+    url: `${apiURL}add/measure`,
+    data: json}).then(res => res.data)
+  }

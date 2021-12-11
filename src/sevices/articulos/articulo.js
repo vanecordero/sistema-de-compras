@@ -1,20 +1,28 @@
 
 import axios from 'axios';
-const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com/"
+const apiURL = "http://shoppingintegration-env.eba-mafprtpj.us-east-2.elasticbeanstalk.com/api/v1/"
 export function GetArticulo(){
     
-    return axios.get(apiURL + "api/v1/all/articles").then(res =>{
+    return axios.get(apiURL + "all/articles").then(res =>{
       return  res.data
     })
 }
 
 export function EditArticulo(id){
-    return axios.get(apiURL + "api/v1/units/"+id+"/update/article/"+id).then(res =>res.data)
+    return axios.get(apiURL + "units/"+id+"/update/article/"+id).then(res =>res.data)
 
 }
 
 export function DeleteArticulo(id){
 
-  return axios.delete(apiURL + "api/v1/units/"+id+"/delete/article/"+id).then(res =>res.data)
+  return axios.delete(apiURL + "units/"+id+"/delete/article/"+id).then(res =>res.data)
 
+}
+
+export function AddArticles(json){
+  console.log(json)
+  return axios({
+    method: 'POST',
+    url: `${apiURL}units`
+  })
 }

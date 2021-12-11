@@ -15,8 +15,14 @@ export default function Article() {
 		setARTICULO(art)
 	}, [art])
 
-	console.log(ARTICULO)
 	let button = useRef(null);
+	let availability = useRef(null);
+	let brand = useRef(null);
+	let description = useRef(null);
+	let status = useRef(null);
+	let cerrar = useRef(null);
+
+	console.log(ARTICULO)
 	const deleteElement = (e, id) => {
 		Swal.fire({
 			title: '¿Esta seguro que desea eliminarlo?',
@@ -47,6 +53,21 @@ export default function Article() {
 	}
 	const openModal = (id) => {
 		button.current.click()
+	}
+	const addArticle=(e)=>{
+		e.preventDefault()
+		let bool = false
+		if(status.current.isCheked){
+			bool = true
+		}
+		if(description != ""){
+			let json = {
+				"availability": availability.current.value,
+				"brand": brand.current.value,
+				"description": description.current.value,
+				"status": bool
+			} 
+		}
 	}
 	return (
 		<>
@@ -83,7 +104,6 @@ export default function Article() {
 							<th scope="col">ID</th>
 							<th scope="col">Tipo</th>
 							<th scope="col">Marca</th>
-							<th scope="col">Medida</th>
 							<th scope="col">Cantidad disponible</th>
 							<th scope="col">Estado</th>
 							<th scope="col">Editar</th>
@@ -97,7 +117,7 @@ export default function Article() {
 									<th scope="row">{ARTICULO[ele]["id"]}</th>
 									<td>{ARTICULO[ele]["description"]}</td>
 									<td>{ARTICULO[ele]["brand"]}</td>
-									{/*<td>{ARTICULO[ele]["measures"][0]["description"]}</td>*/}
+								{/*<td>{ARTICULO[ele]["measures"][0]["description"]}</td>*/}
 									<td>{ARTICULO[ele]["availability"]}</td>
 									<td className={`${(ARTICULO[ele]["status"]) ? "activo" : "inactivo"}`}>{
 										(ARTICULO[ele]["status"]) ? "Activo" : "Inactivo"}</td>
